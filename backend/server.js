@@ -11,12 +11,25 @@ import orderRouter from "./routes/orderRoute.js";
 const app = express();
 const port = process.env.PORT || 4000;
 
+// Allowed origins
+const allowedOrigins = [
+  'http://localhost:5174', // Local development
+  'https://food-del-frontend-op5s.onrender.com' // Deployed frontend
+];
+
 //middleware
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5174', // Allow your frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
-  credentials: true, // Allow credentials
+  origin: function (origin, callback) {
+    // Allow requests with no origin, like mobile apps or curl requests
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 }));
 
 // db connection
