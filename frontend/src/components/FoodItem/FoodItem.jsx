@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react';
 import './FoodItem.css';
 import { assets } from '../../assets/assets';
@@ -7,12 +6,17 @@ import { StoreContext } from '../../context/StoreContext';
 const FoodItem = ({ id, name, price, description, image }) => {
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
+  // Add checks to ensure `price`, `name`, `description`, and `image` are defined
+  if (!price || !name || !description || !image) {
+    return <div>Loading...</div>; // Fallback while data is being fetched
+  }
+
   return (
     <div className="food-item">
       <div className="food-item-img-container">
         <img
           className="food-item-image"
-          src={`${url ? url : ''}/images/${image ? image : 'default_image.png'}`} // Added default fallback for image
+          src={`${url ? url : ''}/images/${image}`} // Safeguard against undefined `url`
           alt={name}
         />
         {!cartItems?.[id] ? (
@@ -44,7 +48,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           <img src={assets.rating_starts} alt="Rating" />
         </div>
         <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">${price}</p>
+        <p className="food-item-price">${price}</p> {/* Check if price exists */}
       </div>
     </div>
   );
