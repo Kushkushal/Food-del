@@ -120,7 +120,7 @@ const PlaceOrder = () => {
                 checked={isCashOnDelivery}
                 onChange={onCheckboxChange}
               />
-              <label>Cash on Delivery</label>
+              <label>(COD) Cash on Delivery</label>
             </div>
             <button type='submit' disabled={!isCashOnDelivery}>Place Order</button>
           </div>
