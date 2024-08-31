@@ -35,3 +35,50 @@
     margin-top: 30px;
 
 }
+/* Style for the checkbox container */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  /* Style for the checkbox */
+  .checkbox-container input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    margin-right: 8px;
+  }
+  
+  /* Style when checkbox is checked */
+  .checkbox-container input[type="checkbox"]:checked {
+    background-color: orange;
+    border: 2px solid orange;
+  }
+  
+  /* Style for the checked state indicator */
+  .checkbox-container input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    position: absolute;
+    top: -1.8px;
+    left: 3px;
+    font-size: 16px;
+  }
+  
+  /* Card view for the order done message */
+  .order-done-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
