@@ -35,14 +35,13 @@
     margin-top: 30px;
 
 }
-/* Style for the checkbox container */
 .checkbox-container {
     display: flex;
     align-items: center;
     margin: 10px 0;
   }
   
-  /* Style for the checkbox */
+  
   .checkbox-container input[type="checkbox"] {
     appearance: none;
     width: 20px;
@@ -55,13 +54,13 @@
     margin-right: 8px;
   }
   
-  /* Style when checkbox is checked */
+
   .checkbox-container input[type="checkbox"]:checked {
     background-color: orange;
     border: 2px solid orange;
   }
   
-  /* Style for the checked state indicator */
+  
   .checkbox-container input[type="checkbox"]:checked::after {
     content: '✔';
     color: white;
@@ -71,7 +70,7 @@
     font-size: 16px;
   }
   
-  /* Card view for the order done message */
+  
   .order-done-card {
     background-color: #f8f9fa;
     border: 1px solid #ddd;
