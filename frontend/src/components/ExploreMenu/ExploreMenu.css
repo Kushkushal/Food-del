@@ -1,67 +1,90 @@
-
-.explore-menu{
+.explore-menu {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.explore-menu h1{
+
+.explore-menu h1 {
     color: #262626;
     font-weight: 500;
 }
-.explore-menu-text{
+
+.explore-menu-text {
     max-width: 60%;
-    columns: #808080;
+    color: #808080;
 }
-.explore-menu-list{
+
+.explore-menu-list {
     display: flex;
+    flex-wrap: wrap; /* Allows items to wrap into multiple rows */
     justify-content: space-between;
-    align-items: center;
-    gap: 30px;
+    align-items: flex-start; /* Aligns items to the start of the row */
+    gap: 20px;
     text-align: center;
     margin: 20px 0px;
-    overflow-x: scroll;
-    
-    
+    overflow-x: auto; /* Horizontal scroll enabled */
+    max-height: 50vh; /* Limit height to fit visible rows */
 }
-.explore-menu-list::-webkit-scrollbar{
-    display:none ;
+
+.explore-menu-list::-webkit-scrollbar {
+    display: none;
 }
+
 .explore-menu-list-item {
-    display: inline-block; /* Ensures the image doesn’t get clipped by its parent */
-    overflow: visible; /* Allows shadows to be visible outside the container */
-    padding: 10px; /* Adds space around the image to ensure shadow visibility */
+    flex: 1 0 calc(12.5% - 20px); /* Fixed size to ensure 8 items per row */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in width calculations */
+    text-align: center; /* Center align text */
+    overflow: hidden; /* Hide overflowing content */
 }
 
 .explore-menu-list-item img {
-    width: 8.5vw; /* Adjust the width as needed */
-    min-width: 80px; /* Minimum width for smaller screens */
-    cursor: pointer; /* Pointer cursor on hover */
+    width: 6vw; /* Adjusted to fit within items */
+    min-width: 50px;
+    cursor: pointer;
     border-radius: 50%; /* Makes the image circular */
-    transition: 0.2s; /* Smooth transition for hover effects */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* 3D shadow effect */
+    transition: 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-.explore-menu-list-item p{
+
+.explore-menu-list-item p {
     margin-top: 10px;
     color: #747474;
-    font-size: max(1.4vw,16px);
+    font-size: max(1.2vw, 12px);
     cursor: pointer;
+    white-space: normal; /* Allows text to wrap to multiple lines */
+    overflow: hidden; /* Hides any overflow content */
+    text-overflow: clip; /* Ensures no ellipsis */
 }
-.explore-menu hr{
+
+.explore-menu hr {
     margin: 10px 0px;
     height: 2px;
     background-color: #e2e2e2;
     border: none;
-
 }
-.explore-menu-list-item .active{
+
+.explore-menu-list-item .active {
     border: 4px solid tomato;
     padding: 2px;
 }
-@media (max-width:1050px) 
-{
-    .explore-menu-text{
+
+@media (max-width: 1050px) {
+    .explore-menu-text {
         max-width: 100%;
         font-size: 14px;
     }
-    
+
+    .explore-menu-list-item {
+        flex: 1 0 calc(25% - 20px); /* 4 items per row on medium screens */
+    }
+}
+
+@media (max-width: 700px) {
+    .explore-menu-list-item {
+        flex: 1 0 calc(33.33% - 20px); /* 3 items per row on small screens */
+    }
 }
