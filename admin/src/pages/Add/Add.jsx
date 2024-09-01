@@ -2,12 +2,12 @@
 import React, { useState } from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
- 
+
 import axios from 'axios'
 import { toast } from 'react-toastify'
-const Add = ({url}) => {
+const Add = ({ url }) => {
 
-    
+
     const [image, setImage] = useState(false);
     const [data, setData] = useState({
         name: "",
@@ -73,15 +73,33 @@ const Add = ({url}) => {
                 <div className="add-category-price">
                     <div className="add-category flex-col">
                         <p>Product Category</p>
-                       <select onChange={onChangeHandler} name="category" >
-                            <option value="Salad">Salad</option>
-                            <option value="Rolls">Rolls</option>
-                            <option value="Deserts">Deserts</option>
-                            <option value="Sandwich">Sandwich</option>
-                            <option value="Cake">Cake</option>
-                            <option value="Pure Veg">Pure Veg</option>
-                            <option value="Pasta">Pasta</option>
-                            <option value="Noodles">Noodles</option>
+                        <select onChange={onChangeHandler} name="category" >
+                            <option value="Atta, Maida & Besan">Atta, Maida & Besan</option>
+                            <option value="Rice & Poha">Rice & Poha</option>
+                            <option value="Dals & Grains">Dals & Grains</option>
+                            <option value="Oil & Ghee">Oil & Ghee</option>
+                            <option value="Masalas & Spices">Masalas & Spices</option>
+                            <option value="Sugar & Salt">Sugar & Salt</option>
+                            <option value="Milk & Egg">Milk & Egg</option>
+                            <option value="Tea, Coffee & Nutrition Drinks">Tea, Coffee & Nutrition Drinks</option>
+                            <option value="Bread, Cheese & Butter">Bread, Cheese & Butter</option>
+                            <option value="Noodles & Pasta">Noodles & Pasta</option>
+                            <option value="Pickles & Papads">Pickles & Papads</option>
+                            <option value="Biscuits & Cakes">Biscuits & Cakes</option>
+                            <option value="Chocolates & Candies">Chocolates & Candies</option>
+                            <option value="Drinks & Juices">Drinks & Juices</option>
+                            <option value="Chips & Namkens">Chips & Namkens</option>
+                            <option value="Oral Care">Oral Care</option>
+                            <option value="FaceWash & Skin Cream">FaceWash & Skin Cream</option>
+                            <option value="Soaps & Handwash">Soaps & Handwash</option>
+                            <option value="Hair Oil & Shampoo">Hair Oil & Shampoo</option>
+                            <option value="Diapers & Pads">Diapers & Pads</option>
+                            <option value="Cleaning Laundry">Cleaning Laundry</option>
+                            <option value="Home Care">Home Care</option>
+                            <option value="Pooja Supplies">Pooja Supplies</option>
+                            <option value="Sauces & Honey">Sauces & Honey</option>
+                            <option value="Cereals & Breakfast">Cereals & Breakfast</option>
+                            <option value="Dry Fruits">Dry Fruits</option>
                         </select>
                     </div>
                     <div className="add-price flex-col">
