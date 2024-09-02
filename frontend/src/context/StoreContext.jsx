@@ -14,18 +14,31 @@ const StoreContextProvider = (props) => {
 
 
 
+    
     const addToCart = async (itemId) => {
+        // Ensure cartItems is initialized
+        if (!cartItems) {
+            console.error("cartItems is undefined or null");
+            return;
+        }
+    
+        // Check if the item exists in the cart and update accordingly
         if (!cartItems[itemId]) {
-            setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
+            setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
+        } else {
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         }
-        else {
-            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-        }
+    
+        // Send the request to the server if the token exists
         if (token) {
-            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } })
+            try {
+                await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
+            } catch (error) {
+                console.error("Error adding to cart:", error);
+            }
         }
-
-    }
+    };
+    
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
         if (token) {
@@ -34,24 +47,18 @@ const StoreContextProvider = (props) => {
         }
     }
 
-   const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-        if (cartItems[item] > 0) {
-            // Find the item info from the food_list
-            const itemInfo = food_list.find((product) => product._id === item);
-
-            // Check if itemInfo is found
-            if (itemInfo) {
+    const getTotalCartAmount = () => {
+        let totalAmount = 0;
+        for (const item in cartItems) {
+            if (cartItems[item] > 0) {
+                let itemInfo = food_list.find((product) => product._id === item);
                 totalAmount += itemInfo.price * cartItems[item];
-            } else {
-                console.error(`Item with ID ${item} not found in food_list`);
-            }
-        }
-    }
-    return totalAmount;
-}
 
+            }
+
+        }
+        return totalAmount;
+    }
 
     const fetchFoodList = async () => {
         const response = await axios.get(url + "/api/food/list");
