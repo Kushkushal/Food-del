@@ -22,7 +22,7 @@ const FoodDisplay = ({ category }) => {
                                 id={item?._id}
                                 name={item?.name ?? 'No name'}
                                 description={item?.description ?? 'No description'}
-                                price=₹{item?.price ?? 'No price'}
+                                price={item?.price ?? 'No price'}
                                 image={item?.image}
                             />
                         );
