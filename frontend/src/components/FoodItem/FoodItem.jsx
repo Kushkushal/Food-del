@@ -48,7 +48,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           <img src={assets.rating_starts} alt="Rating" />
         </div>
         <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">${price}</p> {/* Check if price exists */}
+        <p className="food-item-price">₹{price}</p> {/* Check if price exists */}
       </div>
     </div>
   );
