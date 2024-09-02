@@ -3,6 +3,14 @@ import './FoodDisplay.css';
 import { StoreContext } from '../../context/StoreContext';
 import FoodItem from '../FoodItem/FoodItem';
 
+// Function to format price with INR symbol
+const formatPrice = (price) => {
+    if (price === undefined || price === null) {
+        return 'No price';
+    }
+    return `₹${price.toFixed(2)}`; // Ensuring 2 decimal places
+};
+
 const FoodDisplay = ({ category }) => {
     const { food_list } = useContext(StoreContext);
 
@@ -22,7 +30,7 @@ const FoodDisplay = ({ category }) => {
                                 id={item?._id}
                                 name={item?.name ?? 'No name'}
                                 description={item?.description ?? 'No description'}
-                                price=₹{item?.price ?? 'No price'}
+                                price={formatPrice(item?.price)}
                                 image={item?.image}
                             />
                         );
