@@ -9,7 +9,7 @@ const FoodDisplay = ({ category }) => {
     const { food_list } = useContext(StoreContext);
 
     if (!food_list || food_list.length === 0) {
-        return <div className='food-display'>Items loading, please wait... </div>;
+        return <div className='food-display'>Items loading, please wait </div>;
     }
 
     return (
@@ -22,9 +22,9 @@ const FoodDisplay = ({ category }) => {
                             <FoodItem
                                 key={item._id}
                                 id={item._id}
-                                name={item.name'}
-                                description={item.description'}
-                                price={item.price'}
+                                name={item.name ?? No '}
+                                description={item.description ?? No'}
+                                price={item.price ?? No price'}
                                 image={item.image}
                             />
                         );
