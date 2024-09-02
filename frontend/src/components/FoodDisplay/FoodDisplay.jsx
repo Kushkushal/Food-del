@@ -9,12 +9,12 @@ const FoodDisplay = ({ category }) => {
     const { food_list } = useContext(StoreContext);
 
     if (!food_list || food_list.length === 0) {
-        return <div className='food-display'>Items loading, please wait... ⏳</div>;
+        return <div className='food-display'>Items loading, please wait... </div>;
     }
 
     return (
         <div className='food-display' id='food-display'>
-            <h2>Order Now! only on Deligrow</h2>
+            
             <div className="food-display-list">
                 {food_list.map((item) => {
                     if (category === "All" || category === item.category) {
