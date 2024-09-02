@@ -34,18 +34,24 @@ const StoreContextProvider = (props) => {
         }
     }
 
-    const getTotalCartAmount = () => {
-        let totalAmount = 0;
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item);
+   const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item in cartItems) {
+        if (cartItems[item] > 0) {
+            // Find the item info from the food_list
+            const itemInfo = food_list.find((product) => product._id === item);
+
+            // Check if itemInfo is found
+            if (itemInfo) {
                 totalAmount += itemInfo.price * cartItems[item];
-
+            } else {
+                console.error(`Item with ID ${item} not found in food_list`);
             }
-
         }
-        return totalAmount;
     }
+    return totalAmount;
+}
+
 
     const fetchFoodList = async () => {
         const response = await axios.get(url + "/api/food/list");
