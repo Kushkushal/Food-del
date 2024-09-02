@@ -9,7 +9,7 @@ const FoodDisplay = ({ category }) => {
     const { food_list } = useContext(StoreContext);
 
     if (!food_list || food_list.length === 0) {
-        return <div className='food-display'>No items available</div>;
+        return <div className='food-display'>Items loading, please wait... ⏳</div>;
     }
 
     return (
