@@ -14,77 +14,38 @@ const StoreContextProvider = (props) => {
 
 
 
-    
     const addToCart = async (itemId) => {
-        // Ensure cartItems is initialized
-        if (!cartItems) {
-            console.error("cartItems is undefined or null");
-            return;
-        }
-    
-        // Check if the item exists in the cart and update accordingly
         if (!cartItems[itemId]) {
-            setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-        } else {
-            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+            setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
         }
-    
-        // Send the request to the server if the token exists
+        else {
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+        }
         if (token) {
-            try {
-                await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
-            } catch (error) {
-                console.error("Error adding to cart:", error);
-            }
+            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } })
         }
-    };
-    
-    const removeFromCart = async (itemId) => {
-    // Update cart items locally
-    setCartItems((prev) => {
-        const updatedCart = { ...prev };
-        if (updatedCart[itemId] > 1) {
-            // Decrease the quantity if more than 1
-            updatedCart[itemId] -= 1;
-        } else {
-            // Remove the item from cart if quantity reaches 0 or less
-            delete updatedCart[itemId];
-        }
-        return updatedCart;
-    });
 
-    // Update cart on the server if a token exists
-    if (token) {
-        try {
-            await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
-        } catch (error) {
-            console.error("Error removing from cart:", error);
-            // Rollback cart update if the server operation fails
-            setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
+    }
+    const removeFromCart = async (itemId) => {
+        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+        if (token) {
+            await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
+
         }
     }
-};
-
 
     const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    console.log("Cart Items:", cartItems);
-    console.log("Food List:", food_list);
+        let totalAmount = 0;
+        for (const item in cartItems) {
+            if (cartItems[item] > 0) {
+                let itemInfo = food_list.find((product) => product._id === item);
+                totalAmount += itemInfo.price * cartItems[item];
 
-    for (const itemId in cartItems) {
-        if (cartItems[itemId] > 0) {
-            const itemInfo = food_list.find((product) => product._id === itemId);
-
-            if (itemInfo) {
-                totalAmount += itemInfo.price * cartItems[itemId];
-            } else {
-                console.error(`Item with ID ${itemId} not found in food_list`);
             }
-        }
-    }
 
-    return totalAmount;
-};
+        }
+        return totalAmount;
+    }
 
     const fetchFoodList = async () => {
         const response = await axios.get(url + "/api/food/list");
