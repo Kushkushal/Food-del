@@ -16,7 +16,9 @@ const allowedOrigins = [
   'http://localhost:5174', // Local development
   'https://food-del-frontendd.onrender.com', // Deployed frontend
   'https://food-del-admin-kt9u.onrender.com', // Admin frontend
-  'https://food-del-frontend-op5s.onrender.com'
+  'https://food-del-frontend-op5s.onrender.com',
+  'https://food-del-17eo.vercel.app/',
+  'https://food-del-ki1a.vercel.app/'
 ];
 
 //middleware
